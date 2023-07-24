@@ -1,50 +1,15 @@
 import React, {useReducer} from "react";
+import { initailState, reducer } from "./state/formReducer";
 
 const LogForm = () => {
-  const initailState = {
-    firstName: "",
-    lastName: "",
-    gender: "",
-    email: "",
-    education: "",
-    quantity: 0,
-    feedback: "",
-    terms: false,
-  };
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "INPUT":
-        return {
-          ...state,
-          [action.payload.name]: action.payload.value,
-        };
-      case "INCREMENT":
-        return {
-          ...state,
-          quantity: state.quantity + 1,
-        };
-      case "DECREMENT":
-        return {
-          ...state,
-          quantity: state.quantity - 1,
-        };
 
-      case "TOGGLE":
-        return {
-          ...state,
-          terms: !state.terms,
-        };
-      default:
-        return state;
-    }
-  };
   const [state, dispatch] = useReducer(reducer, initailState);
   const submit = (e) => {
     e.preventDefault();
     console.log(state);
   };
   return (
-    <div className="mx-auto w-1/2 mt-16 rounded-md shadow-md border-2 border-b-purple-400">
+    <div className="mx-auto w-1/2 mt-16 mb-16 rounded-md shadow-md border-2 border-b-purple-400">
       <h1 className="text-2xl text-center font-bold mb-4">User Information</h1>
       <form onSubmit={submit} className="grid grid-cols-2 gap-4 p-4">
         <label htmlFor="firstName" className="block">
